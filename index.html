@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
+    <style>
+        *{
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .layout{
+            display: grid;
+            max-width: 100vw;
+            grid-template-columns: 100vw;
+            grid-template-rows: 57px 40px 975px auto;
+            grid-template-areas: "head"
+                                 "nav"
+                                 "content"
+                                 "foot";
+            gap: 0px;
+        }
+        #head{
+            background-color: rgb(19, 25, 33);
+            grid-area: head;
+            display: flex;
+            color: white;
+            font-size: 11px;
+            flex-flow: row;
+            padding: 2px;
+            
+        }
+        #nav{
+            background-color: rgb(35, 47, 62);
+            grid-area: nav;
+            display: flex;
+            flex-flow: row;
+            color: white;
+            font-size: 14px;
+        }
+        #content{
+            background-color: rgb(227, 230, 230);
+            grid-area: content;
+            width: 100%; 
+        }
+        .foot{
+            background-color: rgb(19, 26, 34);
+            grid-area: foot;
+            height: 250px;
+            display: grid;
+            grid-template-areas: "services"
+                                 "copyright";
+            grid-template-rows: 180px 70px;
+            grid-template-columns: 100vw;
+        }
+
+        /*head css*/
+        .header{
+            display: block;
+            height: 43px;
+        }
+        #logo{
+            width: 120px;
+            margin: 5px 5px 5px 5px;
+        }
+        #address{
+            width: 153px;
+            margin: 5px 5px 5px 5px;
+            padding: 2px;
+        }
+        #add{
+            margin-top: 5px;
+        }
+        #search{
+            display: flex;
+            align-items: center;
+            margin: 5px 5px 5px 5px;
+        }
+        #search:hover{
+            border: none;
+        }
+        input{
+            width: 55vw;
+            font-size: medium;
+            padding: 7px;
+        }
+        #lang{
+            font-size: 14px;
+            margin: 5px 5px 5px 5px;
+            padding: 2px;
+        }
+        #account{
+            margin: 5px 5px 5px 5px;
+            padding: 2px;
+        }
+        #hist{
+            margin: 5px 5px 5px 5px;
+            padding: 2px;
+        }
+        #cart{
+            margin: 5px 5px 5px 5px;
+            padding: 2px;
+        }
+        .header:hover{
+            border: 1px solid white;
+        }
+
+        /*nav css*/
+        .items{
+            display: block;
+            padding: 0px 6px;
+            text-align: center;
+            margin: 0px;
+        }
+        #icon{
+            margin-top: 10px;
+        }
+        .items:hover{
+            border: 1px solid white;
+        }
+        .navadv{
+            align-items: end;
+            margin-left: auto;
+        }
+        .navadv:hover{
+            border: 1px solid white;
+        }
+        
+        /*main ad*/
+        #mainad{
+            width: 100%;
+            height: 220px;
+            display: block;
+            margin: 0px; 
+        }
+        /*content grid*/
+        #contentgrid{
+            display: grid;
+            grid-template-areas: "appliance furniture automob headphones"
+                                 "bedsheet clothes toys fashion";
+            grid-template-columns: 24.75% 24.75% 24.75% 24%;
+            grid-template-rows: 370px 370px;
+            min-width: 100%;
+    
+        }
+        .category{
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            margin: 20px;
+            gap: 20px;
+            min-width: 95%;
+            height: 350px; 
+            
+        }
+        #appliance {
+            grid-area: appliance;
+        }
+        #furniture {
+            grid-area: furniture;
+        }
+        #automob {
+            grid-area: automob;
+        }
+        #headphones {
+            grid-area: headphones;
+        }
+        #bedsheet {
+            grid-area: bedsheet;
+        }
+        #clothes {
+            grid-area: clothes;
+        }
+        #toys {
+            grid-area: toys;
+        }
+        #fashion {
+            grid-area: fashion;
+        }
+
+        .innergrid{
+            display: grid;
+            grid-template-areas: "title title"
+                                 "item1 item2"
+                                 "item3 item4"
+                                 "more more";
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 80px 100px 100px 80px;
+        }
+        .innergrid p{
+            font-size: 12px;
+            margin: 0px;
+        }
+        .title{
+            grid-area: title;
+            font-size: 20px;
+            margin: 10px 10px 0px 10px;
+        }
+        a{
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .item1{
+            margin: 0px 10px;
+        }
+        .item2{
+            margin: 0px 10px;
+        }
+        .item3{
+            margin: 0px 10px;
+        }
+        .item4{
+            margin: 0px 10px;
+        }
+        .more{
+            margin: 30px auto 10px 10px;
+        }
+        
+        .copyright p{
+            font-size: 11px;
+        }
+        
+        .copyright{
+            position: relative;
+            color: white;
+            margin: 0% auto;
+
+            background-color: rgb(19, 26, 34);
+            
+            width: 100vw;
+        }
+        
+        .condition{
+            display: flex;
+            justify-content: center;
+            
+        }
+        li{
+            margin: 0px 10px;
+            list-style-type: none;
+            font-size: 11px;
+        }
+        .copyright p{
+            display: flex;
+            justify-content: center;
+            margin-top: 0px;
+        }
+        .services{
+            
+            
+            color: white;
+        }
+        .other{
+            display: flex;
+            width: 100vw;
+            justify-content: center;
+            
+        }
+        .empty{
+            width: 30px;
+        }
+        .comp{
+            width: 120px;
+        }
+        h6{
+            font-size: 11px;
+            margin: 0px;
+        }
+        .comp p{
+            margin: 0px;
+        }
+        .comp:hover{
+            text-decoration: underline;
+        }
+        .menuicon{
+            width: 20px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+        }
+        .sidenav{
+            display: none;
+            
+        }
+        #down:hover .sidenav{
+            display: inline-block;
+            position: absolute;
+            background-color: white;
+            color: black;
+            
+            
+        }
+        .sideitem{
+            height: 20px;
+            font-size: 15px;
+            width: 200px;
+            text-align: left;
+            
+        }
+        .sidenav ul{
+            list-style-type: none;
+        }
+        #myside{
+            padding: 0px;
+        }
+        .sideitem:hover{
+            background-color: aliceblue;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <div class="absolute">
+            <div id="head">
+                <div class="header" id="logo">
+                    <img src="amazonimg/logo.png" width="120px" height="42px">
+                </div>
+                <div class="header" id="address">
+                    <p id="add">Delivering to Vasai 401208<br><strong>Update location</strong></p>
+                </div>
+                <div class="header" id="search">
+                    
+                    <input class="box" type="text" placeholder="Search Amazon.in">
+                    <img class="box" style="margin: 0px;padding: 0px;" src="amazonimg/magnify.jpg" width="35px" height="35px">
+                </div>
+                <div class="header" id="lang">
+                    <p><strong>EN</strong></p>
+                </div>
+                <div class="header" id="account">
+                    <p>Hello,sign in<br><strong>Account &Lists</strong></p>
+                </div>
+                <div class="header" id="hist">
+                    <p>Returns<br><strong>& Orders</strong></p>
+                </div>
+                <div class="header" id="cart">
+                    <img src="amazonimg/delivery-truck.png" height="50px">
+                </div>
+            </div>
+        </div>
+
+
+        <div id="nav">
+            <div class="items" id="down">
+                <div id="icon">
+                    <div class="menuicon"></div>
+                    <div class="menuicon"></div>
+                    <div class="menuicon"></div>
+                </div>
+                
+                <div class="sidenav">
+                    <ul id="myside">
+                        <li class="sideitem">Trending</li>
+                        <li class="sideitem">Digital Content and Devices</li>
+                        <li class="sideitem">Shop by Category</li>
+                        <li class="sideitem">Programs & Features</li>
+                        <li class="sideitem">Help & Settings</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="items"><p>Fresh Meat</p></div>
+            <div class="items"><p>MX Player</p></div>
+            <div class="items"><p>Sell</p></div>
+            <div class="items"><p>Best Seller</p></div>
+            <div class="items"><p>Mobiles</p></div>
+            <div class="items"><p>Today's Deals</p></div>
+            <div class="items"><p>Electronics</p></div>
+            <div class="items"><p>Customer Service</p></div>
+            <div class="items"><p>Amazon Pay</p></div>
+            <div class="items"><p>Prime</p></div>
+            <div class="items"><p>Home & Kitchen</p></div>
+            
+            <div class="navadv"><img src="amazonimg/navadv.jpg" alt=""></div>
+        </div>
+
+
+        <div id="content">
+            <div id="mainad">
+                <img style="margin: auto;" src="amazonimg/mainad.png" width="100%">
+            </div>
+
+            <div id="contentgrid">
+                <div class="category" id="appliance">
+                    <div class="innergrid">
+                        <div class="title"><strong>Appliances for your Home | Up to 55% Off</strong></div>
+
+                        <div class="item1">
+                            <img src="amazonimg/1item1.jpg" width="auto" height="80px">
+                            <p>Air Conditioners</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/1item2.jpg" height="80px">
+                            <p>Refrigerator</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/1item3.jpg" height="80px">
+                            <p>Microwaves</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/1item4.jpg" height="80px">
+                            <p>Washing machines</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" id="furniture">
+                    <div class="innergrid">
+                        <div class="title"><strong>Revamp your home in style</strong></div>
+                        
+                        <div class="item1">
+                            <img src="amazonimg/2item1.jpg" width="auto" height="80px">
+                            <p>Cushons, covers, bedsheets & more</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/2item2.jpg" height="80px">
+                            <p>Figurins, vasins & more</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/2item3.jpg" height="80px">
+                            <p>Home storage</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/2item4.jpg" height="80px">
+                            <p>Lighting storage</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" id="automob">
+                    <div class="innergrid">
+                        <div class="title"><strong>Automotive essentials | Up to 60% off</strong></div>
+                        
+                        <div class="item1">
+                            <img src="amazonimg/3item1.jpg" width="auto" height="80px">
+                            <p>Cleaning accessories</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/3item2.jpg" height="80px">
+                            <p>Tyre & rim care</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/3item3.jpg" height="80px">
+                            <p>Helmets</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/3item4.jpg" height="80px">
+                            <p>Vacuum cleaner</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" id="headphones">
+                    <div class="innergrid">
+                        <div class="title"><strong>Starting ₹149 | Headphones</strong></div>
+                        <div class="item1">
+                            <img src="amazonimg/4item1.jpg" width="auto" height="80px">
+                            <p>Starting ₹249 | boAt</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/4item2.jpg" height="80px">
+                            <p>Starting ₹349 | boult</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/4item3.jpg" height="80px">
+                            <p>Starting ₹649 | Noise</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/4item4.jpg" height="80px">
+                            <p>Starting ₹149 | Zebronics</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" id="bedsheet">
+                    <div class="innergrid">
+                        <div class="title"><strong>Starting ₹199 | Amazon Brands & more</strong></div>
+                        
+                        <div class="item1">
+                            <img src="amazonimg/5item1.jpg" width="auto" height="80px">
+                            <p>Starting ₹199 | Bedsheets</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/5item2.jpg" height="80px">
+                            <p>Starting ₹199 | Curtains</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/5item3.jpg" height="80px">
+                            <p>Minimum 40% off | Ironing board & more</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/5item4.jpg" height="80px">
+                            <p>Up to 60% off | Home decor</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" id="clothes">
+                    <div class="innergrid">
+                        <div class="title"><strong>Up to 60% off | Styles for women</strong></div>
+                        
+                        <div class="item1">
+                            <img src="amazonimg/6item1.jpg" width="auto" height="80px">
+                            <p>Women's Clothing</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/6item2.jpg" height="80px">
+                            <p>Footwear+Handbags</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/6item3.jpg" height="80px">
+                            <p>Watches</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/6item4.jpg" height="80px">
+                            <p>Fashion jewellery</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" id="fashion">
+                    <div class="innergrid">
+                        <div class="title"><strong>Explore more from Small<br> Businesses</strong></div>
+                        
+                        <div class="item1">
+                            <img src="amazonimg/8item1.jpg" height="80px">
+                            <p>Ethnic, dresses & more</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/8item2.jpg" height="80px">
+                            <p>Décor</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/8item3.jpg" height="80px">
+                            <p>Fashion accessories</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/8item4.jpg" height="80px">
+                            <p>Glassware & drinkware</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category" id="toys">
+                    <div class="innergrid">
+                        <div class="title"><strong>Min. 40% off | Fun toys & games | Amazon brands</strong></div>
+                        
+                        <div class="item1">
+                            <img src="amazonimg/7item1.jpg" width="auto" height="80px">
+                            <p>Toys</p>
+                        </div>
+
+                        <div class="item2">
+                            <img src="amazonimg/7item2.jpg" height="80px">
+                            <p>Cycles</p>
+                        </div>
+
+                        <div class="item3">
+                            <img src="amazonimg/7item3.jpg" height="80px">
+                            <p>Board Games</p>
+                        </div>
+
+                        <div class="item4">
+                            <img src="amazonimg/7item4.jpg" height="80px">
+                            <p>Games</p>
+                        </div>
+
+                        <div class="more">
+                            <a href="#">See more</a>
+                        </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="foot">
+            <div class="services">
+                <ul class="other">
+                    <li class="comp">
+                        <h6>AbeBooks</h6>
+                        <p>Books, art<br>& collectibles</p>
+                    </li>
+                    <li class="empty"></li>
+                    <li class="comp">
+                        <h6>Amazon Web Services</h6>
+                        <p>Scalable Cloud<br>Computing Services</p>
+                    </li>
+                    <li class="empty"></li>
+                    <li class="comp">
+                        <h6>Audible</h6>
+                        <p>Download<br>Audio Books</p>
+                    </li>
+                    <li class="empty"></li>
+                    <li class="comp">
+                        <h6>IMDb</h6>
+                        <p>Movies, TV<br>& Celebrities</p>
+                    </li>
+                </ul>
+                <ul class="other">
+                    <li class="comp">
+                        <h6>Shopbop</h6>
+                        <p>Designer<br>Fashion Brands</p>
+                    </li>
+                    <li class="empty"></li>
+                    <li class="comp">
+                        <h6>Amazon Business</h6>
+                        <p>Everything For<br>Your Business</p>
+                    </li>
+                    <li class="empty"></li>
+                    <li class="comp">
+                        <h6>Prime Now</h6>
+                        <p>2-Hour Delivery<br>on Everyday Items</p>
+                    </li>
+                    <li class="empty"></li>
+                    <li class="comp">
+                        <h6>Amazon Prime Music</h6>
+                        <p>100 million songs, ad-free<br>Over 15 million podcast episodes</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <ul class="condition">
+                    <li>Conditions of Use & Sale</li>
+                    <li>Privacy Notice</li>
+                    <li>Interest-Based Ads</li>
+                </ul>
+                <p>© 1996-2025, Amazon.com, Inc. or its affiliates</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
